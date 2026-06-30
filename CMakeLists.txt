@@ -16,6 +16,9 @@ pico_sdk_init()
 
 add_executable(Robotics_Project_Pico_Program 
     src/main.cpp
+
+    # External Libraries - Copied
+    external/cjson/cJSON.c
     )
 
 # Pico W needs cyw43_arch for the LED
@@ -24,6 +27,9 @@ target_link_libraries(Robotics_Project_Pico_Program
     hardware_pwm
     hardware_gpio
     #cyw43_arch
+
+    # External Libraries - Copied
+    external/cjson/
 )
 
 # Creates .uf2 file for drag-drop flashing
