@@ -15,7 +15,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 pico_sdk_init()
 
 add_executable(Robotics_Project_Pico_Program 
-    main.cpp
+    src/main.cpp
     )
 
 # Pico W needs cyw43_arch for the LED
