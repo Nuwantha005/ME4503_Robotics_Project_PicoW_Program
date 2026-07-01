@@ -71,3 +71,20 @@ experimentation/
   you haven't independently verified end-to-end over WiFi.
 - Keep ISRs short — timestamp/counter writes only, no math, no blocking
   calls. Anything an ISR touches must be `volatile`.
+
+
+## Woking
+- When a planning task is given, save the entire plan to `.agent/plans` folder.
+- After each major change / implementation, log them in `.agent/TASK_LOG.md`.
+
+
+## Building in a Linux Native Folder
+Due to some NTFS reading issues, build folder in NTFS partition `Work` sometimes get stuck during the build process. Therefore, I decided to use `~/.cache/pico_builds/pico_code` as the linux native build folder. `./flash.sh` has been updated to use that, and if manually compile, use following commands in order. Note that we need to symlink the compile commands to vscode for intelliscence, which is a one time operation.
+
+```
+mkdir -p ~/.cache/pico_builds/pico_code
+cmake -DPICO_BOARD=pico_w -S . -B ~/.cache/pico_builds/pico_code
+ln -sf ~/.cache/pico_builds/pico_code/compile_commands.json ./compile_commands.json
+cmake --build ~/.cache/pico_builds/pico_code
+```
+

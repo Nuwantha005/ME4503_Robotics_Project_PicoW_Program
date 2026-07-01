@@ -203,3 +203,21 @@ For C++ modules, the same approach applies using `.cpp` files.
 - Set correct board (`pico` or `pico_w`) in both CMake and VS Code settings
 - Keep/remove CYW43 according to board and code usage
 - Verify `flash.sh` is executable: `chmod +x flash.sh`
+
+## Building in a Linux Native Folder
+Due to some NTFS reading issues, build folder in NTFS partition `Work` sometimes get stuck during the build process. Therefore, I decided to use `~/.cache/pico_builds/pico_code` as the linux native build folder. `./flash.sh` has been updated to use that, and if manually compile, use following commands in order. Note that we need to symlink the compile commands to vscode for intelliscence, which is a one time operation.
+
+```
+# 1. Create the native build cache directory
+mkdir -p ~/.cache/pico_builds/pico_code
+
+# 2. Configure CMake (Source = current folder '.', Build = your native home cache)
+cmake -DPICO_BOARD=pico_w -S . -B ~/.cache/pico_builds/pico_code
+
+# 3. Create the symlink for your editor/LSP (run from your project root)
+ln -sf ~/.cache/pico_builds/pico_code/compile_commands.json ./compile_commands.json
+
+# 4. Compile the binaries
+cmake --build ~/.cache/pico_builds/pico_code
+```
+

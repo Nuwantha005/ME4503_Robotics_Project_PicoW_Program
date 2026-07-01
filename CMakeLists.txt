@@ -14,26 +14,31 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 pico_sdk_init()
 
-add_executable(Robotics_Project_Pico_Program 
+# ── External libraries ──────────────────────────────────────────────────────
+add_subdirectory(external/cjson)
+
+# ── Source modules (each is a static library) ───────────────────────────────
+add_subdirectory(src/common)
+add_subdirectory(src/tests)
+add_subdirectory(src/core1)
+add_subdirectory(src/core0)
+
+# ── Main executable ─────────────────────────────────────────────────────────
+add_executable(Robotics_Project_Pico_Program
     src/main.cpp
-
-    # External Libraries - Copied
-    external/cjson/cJSON.c
-    )
-
-# Pico W needs cyw43_arch for the LED
-target_link_libraries(Robotics_Project_Pico_Program
-    pico_stdlib
-    hardware_pwm
-    hardware_gpio
-    #cyw43_arch
-
-    # External Libraries - Copied
-    external/cjson/
 )
 
-# Creates .uf2 file for drag-drop flashing
+target_link_libraries(Robotics_Project_Pico_Program
+    common_lib
+    tests_lib
+    core0_lib
+    core1_lib
+    cjson
+)
+
+# ── USB serial for debugging on /dev/ttyACM0 ────────────────────────────────
 pico_enable_stdio_usb(Robotics_Project_Pico_Program 1)
 pico_enable_stdio_uart(Robotics_Project_Pico_Program 0)
 
+# ── Generates .uf2, .bin, .hex etc. ─────────────────────────────────────────
 pico_add_extra_outputs(Robotics_Project_Pico_Program)
