@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # Decoupled build path sitting safely on your native Linux filesystem
-BUILD_DIR="~/.cache/pico_builds/pico_code"
+BUILD_DIR="$HOME/.cache/pico_builds/pico_code"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"

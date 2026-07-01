@@ -16,11 +16,12 @@
 // Core 1.
 // ============================================================================
 
-int main() {
+int main()
+{
     // 1. Initialise USB serial console (/dev/ttyACM0)
     stdio_init_all();
     // Wait briefly for serial to connect if needed (useful during debugging)
-    sleep_ms(1500);
+    sleep_ms(5000);
     printf("\n==================================================\n");
     printf("Starting Autonomous WMR Firmware (Phase 1)...\n");
     printf("==================================================\n");
@@ -29,18 +30,26 @@ int main() {
     shared_state_init();
 
     // 3. Initialise WiFi Access Point mode (Core 0)
-    if (!wifi_init()) {
+    if (!wifi_init())
+    {
         printf("[main] CRITICAL ERROR: wifi_init failed!\n");
-        while (true) { sleep_ms(1000); }
+        while (true)
+        {
+            sleep_ms(1000);
+        }
     }
 
     // 4. Initialise isolated LED test module
     led_test_init();
 
     // 5. Start HTTP/WebSocket server on Port 80
-    if (!http_server_init()) {
+    if (!http_server_init())
+    {
         printf("[main] CRITICAL ERROR: http_server_init failed!\n");
-        while (true) { sleep_ms(1000); }
+        while (true)
+        {
+            sleep_ms(1000);
+        }
     }
 
     // 6. Launch Core 1 control loop
