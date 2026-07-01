@@ -20,6 +20,7 @@ app that controls it) and `architecture.md` for the full technical design.
 ```
 src/
   main.cpp
+  control/
   common/      # shared structs, pin config, critical-section helpers, GPIO IRQ dispatcher
   drivers/     # one file per peripheral TYPE (not per instance — e.g. one
                # tof_vl53l0x.cpp handles all 4 ToF sensors, not 4 files)

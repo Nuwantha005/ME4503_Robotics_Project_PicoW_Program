@@ -1,0 +1,14 @@
+add_library(drivers_lib STATIC
+    motor_tb6612.cpp
+    imu_mpu9250.cpp
+    ir_qtr8rc.cpp
+    tof_vl53l0x.cpp
+)
+
+target_include_directories(drivers_lib PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_link_libraries(drivers_lib PUBLIC
+    pico_stdlib
+)

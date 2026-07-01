@@ -1,0 +1,13 @@
+add_library(control_lib STATIC
+    line_following.cpp
+    mecanum_kinematics.cpp
+    PID_algo.cpp
+)
+
+target_include_directories(control_lib PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_link_libraries(control_lib PUBLIC
+    pico_stdlib
+)
