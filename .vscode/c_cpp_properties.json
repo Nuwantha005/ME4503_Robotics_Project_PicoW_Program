@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "name": "Pico",
+            "compilerPath": "/usr/bin/arm-none-eabi-g++",
+            "compileCommands": "${workspaceFolder}/compile_commands.json",
+            "includePath": [
+                "${workspaceFolder}/src/**",
+                "/usr/share/pico-sdk/**"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-gcc-arm"
+        }
+    ],
+    "version": 4
+}

@@ -1,0 +1,5 @@
+{
+  "cmake.configureOnOpen": false,
+  "cmake.buildDirectory": "~/.cache/pico_builds/pico_code",
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/compile_commands.json"
+}
